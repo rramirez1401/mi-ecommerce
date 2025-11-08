@@ -12,9 +12,4 @@ class BaseModel(models.Model):
         abstract = True
         verbose_name = 'Modelo base'
         verbose_name_plural = 'Modelos base'
-
-    def delete(self, using=None, keep_parents=False):
-        """Eliminación lógica (no borra el registro físicamente)."""
-        self.state = False
-        self.deleted_date = timezone.now()
-        self.save()
+                                                        
