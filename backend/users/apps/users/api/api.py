@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from apps.users.models import User
-from apps.users.api.serializers.serializer import UserSerializer, UserListSerializer
+from apps.users.api.serializers.user_serializer import UserSerializer, UserListSerializer
 
 @api_view(['GET', 'POST'])
 def user_api_view(request):

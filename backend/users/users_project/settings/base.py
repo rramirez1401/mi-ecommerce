@@ -11,11 +11,19 @@ load_dotenv(BASE_DIR.parent / '.env')
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
-ALLOWED_HOSTS = ['*']  
 
+ALLOWED_HOSTS = [
+    'users-service',       # contenedor Docker interno
+    'products-service',    # contenedor Docker interno
+    'orders-service',      # contenedor Docker interno
+    'localhost',
+    '127.0.0.1',
+    '.app.github.dev'      # <- para permitir subdominios de Codespaces
+]
 
 CSRF_TRUSTED_ORIGINS = [
-"https://localhost:7000"
+    'https://*.app.github.dev',  # wildcard de Codespaces
+    'https://localhost:7000',
 ]
 
 # Application definition
@@ -36,10 +44,23 @@ LOCAL_APPS = [
 
 THIRD_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'simple_history',
+    'drf_yasg',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+
 
 
 MIDDLEWARE = [

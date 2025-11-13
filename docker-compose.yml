@@ -3,7 +3,7 @@ services:
   # BASES DE DATOS
   # -------------------
 
-  users_db:
+  users-db:
     image: postgres
     environment:
       POSTGRES_DB: users_db
@@ -15,7 +15,7 @@ services:
     networks:
       - ecommerce_net
 
-  products_db:
+  products-db:
     image: postgres
     environment:
       POSTGRES_DB: products_db
@@ -27,7 +27,7 @@ services:
     networks:
       - ecommerce_net
 
-  orders_db:
+  orders-db:
     image: postgres
     environment:
       POSTGRES_DB: orders_db
@@ -43,7 +43,7 @@ services:
   # MICROSERVICIOS DJANGO
   # -------------------
 
-  users_service:
+  users-service:
     build: ./backend/users
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -53,11 +53,11 @@ services:
     env_file:
       - ./backend/users/.env
     depends_on:
-      - users_db
+      - users-db
     networks:
       - ecommerce_net
 
-  products_service:
+  products-service:
     build: ./backend/products
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -67,11 +67,11 @@ services:
     env_file:
       - ./backend/products/.env
     depends_on:
-      - products_db
+      - products-db
     networks:
       - ecommerce_net
 
-  orders_service:
+  orders-service:
     build: ./backend/orders
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -81,7 +81,7 @@ services:
     env_file:
       - ./backend/orders/.env
     depends_on:
-      - orders_db
+      - orders-db
     networks:
       - ecommerce_net
 

@@ -11,11 +11,20 @@ load_dotenv(BASE_DIR.parent / '.env')
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
-ALLOWED_HOSTS = ['*']  
 
+ALLOWED_HOSTS = [
+    'products-service',
+    'users-service',
+    'orders-service',
+    'localhost',
+    '127.0.0.1',
+    '.app.github.dev'
+]
 
 CSRF_TRUSTED_ORIGINS = [
-"https://localhost:7100"
+    'https://glorious-lamp-pjxq7rwx4wq37prj-7100.app.github.dev',
+    'https://*.app.github.dev',
+    'https://localhost:7100'
 ]
 
 # Application definition
@@ -32,14 +41,25 @@ BASE_APPS = [
 LOCAL_APPS = [
     'apps.products',
     'apps.base',
-]
+    ]
+
+    
 
 THIRD_APPS = [
     'rest_framework',
     'simple_history',
+    'drf_yasg',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
+
+
+USERS_VERIFY_URL = 'http://users-service:8000/usuario/verify_token/'
+
+
+SWAGGER_SETTINGS = {
+    'DOC_EXPANSION': 'none'
+}
 
 
 MIDDLEWARE = [

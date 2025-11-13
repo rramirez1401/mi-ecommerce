@@ -6,3 +6,5 @@ mercadopago
 celery
 redis
 python-dotenv
+drf-yasg
+requests

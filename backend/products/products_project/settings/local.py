@@ -3,7 +3,19 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'products-service',
+    'users-service',
+    'orders-service',
+    'localhost',
+    '127.0.0.1',
+    '.app.github.dev'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.app.github.dev',
+    'https://localhost:7100'
+]
 
 
 # Database

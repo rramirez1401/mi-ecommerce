@@ -1,4 +1,12 @@
 # =======================================
+# Carpeta con claves jwt publicas/privadas
+# =======================================
+
+backend/**/secrets/
+secrets/
+
+
+# =======================================
 # COMPLEMENTO: Django + Docker + PostgreSQL
 # =======================================
 

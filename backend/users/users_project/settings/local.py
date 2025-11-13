@@ -3,8 +3,19 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'users-service',       # contenedor Docker interno
+    'products-service',    # contenedor Docker interno
+    'orders-service',      # contenedor Docker interno
+    'localhost',
+    '127.0.0.1',
+    '.app.github.dev'      # <- para permitir subdominios de Codespaces
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.app.github.dev',  # wildcard de Codespaces
+    'https://localhost:7000',
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
